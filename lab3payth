@@ -1,1 +1,64 @@
+def count_unique(a):
+    return len(set(a))
 
+
+def build_vector(A):
+    return [count_unique(row) for row in A]
+
+
+def task1():
+    n = int(input("Введіть n (до 20): "))
+    A = [list(map(int, input().split())) for _ in range(n)]
+    B = build_vector(A)
+
+    print("Вектор B:")
+    for i in range(0, n, 10):
+        print(*B[i:i + 10])
+
+
+def task2():
+    heights = []
+
+    for i in range(20):
+        gender = input("Стать (ч/ж): ").lower()
+        height = float(input("Зріст у см: "))
+        if gender == "ч":
+            heights.append(height)
+
+    if heights:
+        print("Середній зріст чоловіків:", sum(heights) / len(heights))
+    else:
+        print("Чоловіків немає")
+
+2
+def task3():
+    N, K = map(int, input("Введіть N і K: ").split())
+    strikes = set()
+
+    for i in range(K):
+        a, b = map(int, input("Введіть a і b: ").split())
+        for day in range(a, N + 1, b):
+            if day % 7 not in (6, 0):
+                strikes.add(day)
+
+    print("Кількість страйків:", len(strikes))
+
+
+while True:
+    print("\n1 - Матриця")
+    print("2 - Середній зріст чоловіків")
+    print("3 - Політичні страйки")
+    print("0 - Вихід")
+
+    choice = input("Ваш вибір: ")
+
+    if choice == "1":
+        task1()
+    elif choice == "2":
+        task2()
+    elif choice == "3":
+        task3()
+    elif choice == "0":
+        break
+    else:
+        print("Неправильний вибір")
